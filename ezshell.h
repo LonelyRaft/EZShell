@@ -7,11 +7,10 @@
 #pragma diag_suppress 1094
 #endif // __INTELLISENSE__
 #define EZSHELL_REGISTER(ezshell_cmd)                    \
-    __attribute__((constructor(110))) static int         \
+    __attribute__((constructor(110))) static void         \
         ezshell_register_##ezshell_cmd(void)             \
     {                                                    \
         ezshell_cmd_register(#ezshell_cmd, ezshell_cmd); \
-        return 0;                                        \
     }
 #else
 #define EZSHELL_REGISTER
