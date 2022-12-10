@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.20)
 
 if(${CMAKE_HOST_SYSTEM_NAME} MATCHES Windows)
     set(CMAKE_TOOLCHAIN_FILE mingw.cmake)
-elseif(${CMAKE_HOST_SYSTEM_NAME} MATCHES Windows)
+elseif(${CMAKE_HOST_SYSTEM_NAME} MATCHES Linux)
     set(CMAKE_TOOLCHAIN_FILE linuxgcc.cmake)
 endif()
 

@@ -4,6 +4,11 @@
 #include <stdlib.h>
 #include <pthread.h>
 
+#ifdef __linux__
+#include <fcntl.h>
+#include <unistd.h>
+#endif
+
 #ifndef EZSHELL_CMD_BUFFSZ
 // Maximum number of commands
 #define EZSHELL_CMD_BUFFSZ 24
@@ -32,6 +37,7 @@ typedef struct s_action
 static action_t g_cmd_list[EZSHELL_CMD_BUFFSZ] = {0};
 static int g_cmd_listsz = 0;
 static pthread_mutex_t g_cmd_listmut = PTHREAD_MUTEX_INITIALIZER;
+static const char *g_ezhist = "ezhistory.txt";
 
 // #ifdef __GNUC__
 // __attribute__((constructor(101))) static void ezshell_mutex_init(void)
@@ -129,6 +135,7 @@ static void *shell_thread(void *arg)
         int arg_count;
         char **arg_vector;
         // get cmd srting from stdin
+        printf("ezhsell@cmd>");
         scanf(" %[^\n]s", cmd);
         getchar();
         // alloc mem for arguments
