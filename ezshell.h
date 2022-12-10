@@ -18,7 +18,9 @@ extern "C"
         ezshell_cmd_register(#ezshell_cmd, ezshell_cmd); \
     }
 #else
-#define EZSHELL_REGISTER
+#define EZSHELL_REGISTER(ezshell_cmd) \
+    {                                 \
+    }
 #endif // __GNU__
 
 // register cmd successfully
@@ -38,7 +40,7 @@ extern "C"
 
     extern int ezshell_init(void);
 
-#ifdef _cplusplus
+#ifdef __cplusplus
 }
 #endif
 
