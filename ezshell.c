@@ -151,7 +151,7 @@ static void *shell_thread(void *arg)
     return 0;
 }
 
-int sheltsk_init(void)
+int ezshell_init(void)
 {
     pthread_t thread;
     pthread_create(&thread, 0, shell_thread, 0);

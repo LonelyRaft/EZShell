@@ -11,8 +11,3 @@ static void demo(int argc, char *argv[])
 }
 EZSHELL_REGISTER(demo)
 
-static void ezexit(int argc, char *argv[])
-{
-    exit(0);
-}
-EZSHELL_REGISTER(ezexit);

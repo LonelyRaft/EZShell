@@ -2,12 +2,17 @@
 #ifndef _EZSHELL_H
 #define _EZSHELL_H
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
 #ifdef __GNUC__
 #ifdef __INTELLISENSE__
 #pragma diag_suppress 1094
 #endif // __INTELLISENSE__
 #define EZSHELL_REGISTER(ezshell_cmd)                    \
-    __attribute__((constructor(110))) static void         \
+    __attribute__((constructor(110))) static void        \
         ezshell_register_##ezshell_cmd(void)             \
     {                                                    \
         ezshell_cmd_register(#ezshell_cmd, ezshell_cmd); \
@@ -27,10 +32,14 @@
 // duplicate cmd (name)
 #define EZSHELL_DUPLICATE -4
 
-int ezshell_cmd_register(
-    const char *_name,
-    void (*_action)(int, char **));
+    int ezshell_cmd_register(
+        const char *_name,
+        void (*_action)(int, char **));
 
-extern int sheltsk_init(void);
+    extern int ezshell_init(void);
+
+#ifdef _cplusplus
+}
+#endif
 
 #endif // _EZSHELL_H

@@ -1,16 +1,19 @@
 
 cmake_minimum_required(VERSION 3.20)
 
-set(CMAKE_TOOLCHAIN_FILE mingw.cmake)
+if(${CMAKE_HOST_SYSTEM_NAME} MATCHES Windows)
+    set(CMAKE_TOOLCHAIN_FILE mingw.cmake)
+elseif(${CMAKE_HOST_SYSTEM_NAME} MATCHES Windows)
+    set(CMAKE_TOOLCHAIN_FILE linuxgcc.cmake)
+endif()
 
-project(Main VERSION 1.0)
+project(EZShell VERSION 1.0)
 
-add_executable(${PROJECT_NAME} "")
-
+set(TARGET_NAME ezshell)
+add_executable(${TARGET_NAME} "")
+aux_source_directory(
+    . TARGET_SRC_LIST)
 target_sources(
-    ${PROJECT_NAME} PRIVATE
-    main.c
-    ezshell.c
-    cmds.c
-    ezshell.h
+    ${TARGET_NAME} PRIVATE
+    ${TARGET_SRC_LIST}
 )
